@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static ArrayList<int[]> arr;        
+    
+    public static int checkIfPresent(int x,int y){        
+        if(x<=arr.size()){            
+            int[] a = arr.get(x-1);            
+            if(y<=a.length){                
+                return a[y-1];            
+            }        
+        }        
+        else{            
+            return -1;           
+        }        
+        return -1;    
+    }        
+    
+    public static void main(String[] args) {                
+        int n=0,q=0,limit=0;        
+        Scanner s = new Scanner(System.in);        
+        n = s.nextInt();                
+        arr = new ArrayList<int[]>();                
+        int[] narr;        
+        for(int i=0;i<n;i++){            
+            limit = s.nextInt();            
+            narr = new int[limit];            
+            for(int j=0;j<limit;j++){                
+                narr[j] = s.nextInt();            
+            }            
+            arr.add(narr);        
+         }
+         q = s.nextInt();        
+         int[][] xyArr = new int[2][q];                
+         for(int i=0;i<q;i++){            
+            xyArr[0][i] = s.nextInt();            
+            xyArr[1][i] = s.nextInt();        
+         }                
+         
+         for(int i=0;i<q;i++){            
+            int num = checkIfPresent(xyArr[0][i],xyArr[1][i]);            
+            if(num==-1)                
+                System.out.println("ERROR!");            
+            else                
+                System.out.println(num);        
+          }            
+      }
+ }
