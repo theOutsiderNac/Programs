@@ -1,0 +1,73 @@
+import java.util.*;
+
+class Solution{
+    
+   public static int stackCnt=0;    // Count of number of elements present in the stack.
+   public static ArrayList<Character> stackArr; // Create a dynamic array (ArrayList) which stores characters.
+    
+   public static void initialize(){     //  Initialize method to reset Values.
+       stackArr = new ArrayList<Character>();   // Reset ArrayList to size 0 with no values.
+       stackCnt=0;  // Set counter to 0.
+   }
+    
+   public static char popStack(){   // Method to pop elements from stack.
+       char tempChar = stackArr.get(stackCnt-1);    // Store last element of stack in tempChar.
+       stackArr.remove(stackCnt-1); // Remove last element from stackArr.
+       stackCnt--;  // Decrement the counter stackCnt.
+       return tempChar; // return tempChar.
+   }
+    
+   public static void pushStack(char addChar){  // Method to push element to stack.
+       stackArr.add(addChar);   // add addChar sent by checkIfBalanced() method to stackArr.
+       stackCnt++;  // Increment stackCnt to resemble number of elements in stack.
+   }
+    
+   public static boolean checkIfBalanced(String input){ // Method to check if String is balanced or not.
+       
+        char[] arr = input.toCharArray();   // convert input String to Character array "arr".
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==')' || arr[i]==']' || arr[i]=='}'){  // We search for all closing brackets.
+                if(stackCnt==0) // If stack is empty, but String is not yet emptry, then all characters 
+                    return false;   // will not be matched, so return false.
+                else{
+                    if(arr[i]==')'){    // If we encounter closing bracket ")"
+                        if('('!=popStack()){    // we pop stack and check if it matches with "("
+                            return false;   // If it does not, then return false.
+                        }
+                    }
+                    else if(arr[i]==']'){   
+                        if('['!=popStack()){    
+                            return false;
+                        }                   
+                    }
+                    else if(arr[i]=='}'){
+                        if('{'!=popStack()){
+                            return false;
+                        }
+                    }
+                }
+            }
+            else{   // if none of the closing brackets appear, it means the character is opening bracket.
+                pushStack(arr[i]);  // so push the character in stack.
+            }
+        }
+        if(stackCnt==0) // If after all iteration, stack is empty, means all characters have matched.
+            return true;    // Hence return true as a Balanced String.
+        else    // Stack is not empty, means some characters have not matched.
+            return false;   // Hence return false.
+   }
+    
+   public static void main(String []argh)
+   {
+      Scanner sc = new Scanner(System.in);
+      
+      while (sc.hasNext()) {    // Keep accepting strings from user.
+            
+          String input=sc.next();   // Accept the input from user.
+          initialize(); //  Reset ArrayList stackArr to size 0 and set stackCnt to 0.
+          System.out.println(checkIfBalanced(input));   // Print if String is balanced or not.
+          
+      }
+      
+   }
+}
