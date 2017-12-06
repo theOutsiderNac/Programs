@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    static int migratoryBirds(int n, int[] ar) {
+        int[] arr = new int[5];
+        for(int i=0;i<ar.length;i++){
+            arr[ar[i]-1]++;         
+        }
+        int max=-99,pos=-1;
+        for(int j=0;j<arr.length;j++){
+            if(arr[j]>max){
+                max = arr[j];
+                pos = j+1; 
+            }
+        }
+        return pos;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] ar = new int[n];
+        for(int ar_i = 0; ar_i < n; ar_i++){
+            ar[ar_i] = in.nextInt();
+        }
+        int result = migratoryBirds(n, ar);
+        System.out.println(result);
+    }
+}
