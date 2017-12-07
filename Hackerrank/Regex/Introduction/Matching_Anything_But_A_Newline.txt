@@ -10,6 +10,14 @@ public class Solution {
         
         Tester tester = new Tester();
         tester.check("(.{3}\\.?){4}"); 
+/*
+        ".{3}\." means any character, but not newline, occurs 3 times followed by ".", which occur {0,1}. This whole pattern is grouped and occurs exactly 4 times.
+Detail Explanation:
+".{3}" .means any character but not a newline occuring 3 times only
+"\." In java if you want to match (.) in the test string, you need to escape the dot by using a slash . and \ with another escape character so, \.
+"?" Occurs none or at the most one time. Here "\.?" looks for "." occuring exaclty zero or at most one time {0,1}.
+"{4}" occurs exactly 4 times. (pattern){4} -pattern ocurs exactly 4 times.
+*/
     
     }
 }
@@ -28,3 +36,11 @@ class Tester {
     }   
     
 }
+
+/* OUTPUT:-
+Input - 123.456.abc.def
+Output - true
+
+Input - 1123.456.abc.def
+Output - false
+*/
