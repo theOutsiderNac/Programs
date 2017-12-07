@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {    
+
+    public static void main(String[] args) {
+
+	/*
+	For JAVA we need to use \\d instead of \d.
+	\d - The expression \d matches any digit [0 - 9].
+	\D - The expression \D matches any character that is not a digit.
+	*/        
+        Regex_Test tester = new Regex_Test();
+        tester.checker("(\\d{2}\\D){2}(\\d{4})"); 
+	/*
+	We have to match expression xxXxxXxxxx, where x is digit and X is non-digit.
+	So here (\\d{2}\\D) means 2 times digit followed by one non-digit (xxX).
+	We put {2} after (\\d{2}\\D) cause we want it 2 times - (xxXxxX).
+	Then we want digit 4 times, that's why (\\d{4}).
+	*/
+    
+    }
+}
+
+class Regex_Test {
+
+    public void checker(String Regex_Pattern){
+    
+        Scanner Input = new Scanner(System.in);
+        String Test_String = Input.nextLine();
+        Pattern p = Pattern.compile(Regex_Pattern);
+        Matcher m = p.matcher(Test_String);
+        System.out.println(m.find());
+    }   
+    
+}
+
+/*
+Input - 06-11-2015
+Output - true
+*/
