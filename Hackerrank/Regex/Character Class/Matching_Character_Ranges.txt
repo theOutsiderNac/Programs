@@ -1,0 +1,38 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {    
+
+    public static void main(String[] args) {
+        
+        Regex_Test tester = new Regex_Test();
+        tester.checker("^[a-z][1-9][^a-z][^A-Z][A-Z]"); 
+	
+	/*
+    	In the context of a regular expression (RegEx), a character class is a set of characters enclosed 
+	within square brackets that allows you to match one character in the set.
+
+	A hyphen (-) inside a character class specifies a range of characters where the left and right 
+	operands are the respective lower and upper bounds of the range. For example:
+
+	[0-9] - is same as [0123456789].
+	*/
+
+    }
+}
+
+class Regex_Test {
+
+    public void checker(String Regex_Pattern){
+    
+        Scanner Input = new Scanner(System.in);
+        String Test_String = Input.nextLine();
+        Pattern p = Pattern.compile(Regex_Pattern);
+        Matcher m = p.matcher(Test_String);
+        System.out.println(m.find());
+    }   
+    
+}
