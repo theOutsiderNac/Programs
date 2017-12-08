@@ -27,3 +27,8 @@ class Regex_Test {
     }   
     
 }
+
+/*
+Input - think?
+Output - true
+*/
