@@ -1,0 +1,36 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {    
+
+    public static void main(String[] args) {
+        
+        Regex_Test tester = new Regex_Test();
+        tester.checker("^\\d+[A-Z]+([a-z]+)$"); 
+    
+	/*
+		+ - The + tool will match one or more repetitions of character/character class/group.		
+		For example,
+			w+ : It will match the character w 0 or more times. 
+			[xyz]+ : It will match the character x, y or z 0 or more times.
+			\d+ : It will match any digit 0 or more times.
+	*/
+
+    }
+}
+
+class Regex_Test {
+
+    public void checker(String Regex_Pattern){
+    
+        Scanner Input = new Scanner(System.in);
+        String Test_String = Input.nextLine();
+        Pattern p = Pattern.compile(Regex_Pattern);
+        Matcher m = p.matcher(Test_String);
+        System.out.println(m.find());
+    }   
+    
+}
