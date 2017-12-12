@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        for(int q=0;q<n;q++){
+            int tot_squares = 0;
+            int lower_limit = s.nextInt();
+            int upper_limit = s.nextInt();
+            
+            int lower_sqroot = (int)(Math.sqrt(lower_limit));
+            int upper_sqroot = (int)(Math.sqrt(upper_limit));
+            
+            for(int i = lower_sqroot; i<= upper_sqroot; i++){
+                int temp = i*i;
+                if((temp)>=lower_limit && (temp)<=upper_limit){
+                    tot_squares++;
+                }
+            }
+            System.out.println(tot_squares);
+            
+        }
+        
+    }
+}
