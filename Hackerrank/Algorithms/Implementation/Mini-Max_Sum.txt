@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class MinMaxSum {
+
+	
+	public static long max = -1,min;
+	public static long[] final_arr = new long[5];
+	
+	public static void problemWorking(int[] arr) {
+		
+		int absent_index = 0,j=0;
+		for(int i=0;i<5;i++) {
+			for(j=0;j<5;j++) {
+				if(absent_index!=j) {
+					final_arr[i] = final_arr[i] + arr[j];
+				}
+			}
+            if(i==0){
+                min = final_arr[i];
+            }
+			if(min>final_arr[i]) {
+				min = final_arr[i];
+			}
+			if(max<final_arr[i])
+				max = final_arr[i];
+			absent_index++;
+		}
+	
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner s = new Scanner(System.in);
+		int[] arr = new int[5];
+		
+		for(int i=0;i<5;i++) {
+			arr[i] = s.nextInt();
+		}
+		
+		problemWorking(arr);
+		
+		System.out.println(min+" "+max);
+		
+	}
+
+}
