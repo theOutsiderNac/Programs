@@ -1,0 +1,57 @@
+import java.util.*;
+
+public class ChocalateFeast {
+
+	public int currWrapper = 0;
+	public static int totalChocolates = 0;
+	
+	public void setCurrWrapper(int num) {
+		currWrapper = num;
+	}
+	
+	public void incrementCurrWrapper() {
+		currWrapper++;
+	}
+	
+	public int getCurrWrapper() {
+		return currWrapper;
+	}
+	
+	public int calculateChocolates(int oneChocolatePrice,int totalAmount) {
+		return (totalAmount/oneChocolatePrice);
+	}
+	
+	public int wrapperChocolateExchange(int reqWrapper,int currWrapper) {
+		int tempWrapper = currWrapper/reqWrapper;
+		setCurrWrapper(currWrapper%reqWrapper);
+		return tempWrapper;
+	}
+	
+	public int totalChocalateCount(int numOfChocolates,int reqWrapper) {
+		setCurrWrapper(getCurrWrapper() + numOfChocolates);
+		totalChocolates += numChocolates;
+		if((getCurrWrapper() + numChocolates)<reqWrapper)
+			return totalChocolates;
+		else
+			totalChocalateCount(numChocolates,reqWrapper);
+		return totalChocolates;
+	}
+	
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        ChocalateFeast cf = new ChocalateFeast();
+        
+        for(int a0 = 0; a0 < t; a0++){
+        	totalChocolates = 0;
+        	cf.setCurrWrapper(0);
+            	int n = in.nextInt();
+            	int c = in.nextInt();
+            	int m = in.nextInt();
+            	totalChocolates = cf.calculateChocolates(c, n);
+            	System.out.println(cf.totalChocalateCount(totalChocolates, m));
+        }
+        
+        in.close();
+    }
+}
