@@ -9,10 +9,6 @@ public class ChocalateFeast {
 		currWrapper = num;
 	}
 	
-	public void incrementCurrWrapper() {
-		currWrapper++;
-	}
-	
 	public int getCurrWrapper() {
 		return currWrapper;
 	}
