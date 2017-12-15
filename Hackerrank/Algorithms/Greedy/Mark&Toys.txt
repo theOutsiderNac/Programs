@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class MarkToys {
+	
+    public int maximumToys(int[] prices, int totalMoney) {
+		int cnt=0;
+    	for(int i=0;i<prices.length;i++) {
+			if(totalMoney>=prices[i]) {
+				totalMoney -= prices[i];
+				cnt++;
+			}
+		}
+    	return cnt;
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int k = in.nextInt();
+        int[] prices = new int[n];
+        for(int prices_i = 0; prices_i < n; prices_i++){
+            prices[prices_i] = in.nextInt();
+        }
+        Arrays.sort(prices);
+        
+        MarkToys mt = new MarkToys();
+        System.out.println(mt.maximumToys(prices, k));
+        in.close();
+    }
+}
