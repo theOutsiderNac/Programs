@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class BeautifulString {
+
+    public static int minSteps(int n, String B){
+    	int cnt=0;
+       	if(!B.contains("010"))
+       		return 0;
+       	else {
+       		char[] arr = B.toCharArray();
+       		for(int i=0;i<n-2;i++) {
+       			if(arr[i]=='0' && arr[i+1]=='1' && arr[i+2]=='0') {
+       				arr[i+2] = '1';
+       				cnt++;
+       			}
+       		}
+       		return cnt;
+       	}
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        String B = in.next();
+        System.out.println(minSteps(n, B));
+        
+    }
+}
