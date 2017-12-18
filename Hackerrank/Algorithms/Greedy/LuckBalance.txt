@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class LuckBalance {
+
+	public static int totalLuckCount = 0;
+	
+	public static int getMinLuckCostForImportant(int[] luckCnt,int[] contestIsImportant) {
+		int min = 0,index=0,flag=0;
+		for(int i=0;i<luckCnt.length;i++) {
+			if(flag==0 && contestIsImportant[i]==1) {
+				min = luckCnt[i];
+				index = i;
+				flag=1;
+			}
+			else if(flag==1){
+				if(min>luckCnt[i] && contestIsImportant[i]==1) {
+					min = luckCnt[i];
+					index = i;
+				}
+			}
+		}
+		return index;
+	}
+	
+	public static int getImportantContestCnt(int[] contestIsImportant) {
+		int impCount=0;
+		for(int i=0;i<contestIsImportant.length;i++) {
+			if(contestIsImportant[i]==1)
+				impCount++;
+		}
+		return impCount;
+	}
+	
+	public static void LoseTheUnImportantContest(int[] luckCnt,int[] contestIsImportant,int limitImportantLosses) {
+		for(int i=0;i<luckCnt.length;i++)
+			if(contestIsImportant[i]==0)
+				totalLuckCount += luckCnt[i];
+	}
+	
+	public static void WinTheImportantContest(int[] luckCnt,int[] contestIsImportant,int limitImportantLosses) {
+		int minTemp=0;		
+		while(getImportantContestCnt(contestIsImportant)>limitImportantLosses) {
+			minTemp = getMinLuckCostForImportant(luckCnt,contestIsImportant);
+			totalLuckCount -= luckCnt[minTemp];
+			contestIsImportant[minTemp] = 2;
+		}
+	}
+	
+	public static void LoseTheImportantContest(int[] luckCnt,int[] contestIsImportant,int limitImportantLosses) {
+		for(int i=0;i<luckCnt.length;i++)
+			if(contestIsImportant[i]==1)
+				totalLuckCount += luckCnt[i];
+	}
+	
+	public static int getTotalLuckCount(int[] luckCnt,int[] contestIsImportant,int limitImportantLosses) {
+		LoseTheUnImportantContest(luckCnt,contestIsImportant,limitImportantLosses);
+		WinTheImportantContest(luckCnt,contestIsImportant,limitImportantLosses);
+		LoseTheImportantContest(luckCnt,contestIsImportant,limitImportantLosses);
+		return totalLuckCount;
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner s = new Scanner(System.in);
+		int numOfContests = s.nextInt();
+		int limitImportantLosses = s.nextInt();
+		
+		int[] luckCnt = new int[numOfContests];
+		int[] contestIsImportant = new int[numOfContests];
+		for(int i=0;i<numOfContests;i++) {
+			luckCnt[i] = s.nextInt();
+			contestIsImportant[i] = s.nextInt();
+		}
+		
+		System.out.println(getTotalLuckCount(luckCnt,contestIsImportant,limitImportantLosses));
+		
+		s.close();
+		
+	}
+	
+}
