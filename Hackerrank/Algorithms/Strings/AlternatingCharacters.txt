@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class AlternatingCharacters {
+
+	public static int removeAlternatingCharacters(String str) {
+		int removeCnt=0;
+		char[] strToChar = str.toCharArray();
+		for(int i=1;i<strToChar.length;i++) {
+			if(strToChar[i]==strToChar[i-1]) {
+				removeCnt++;
+			}
+		}
+		return removeCnt;
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner s = new Scanner(System.in);
+		int test_cases = s.nextInt();
+		s.nextLine();
+		String str = null;
+		for(int testCasei=0;testCasei<test_cases;testCasei++) {
+			str = s.nextLine();
+			System.out.println(removeAlternatingCharacters(str));
+		}
+		
+		s.close();
+		
+	}
+	
+}
